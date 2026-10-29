@@ -1,0 +1,13 @@
+[
+  {
+    "provider_name": "configure-your-provider",
+    "model_alias": "configure-a-trained-candidate-alias",
+    "model_id": "configure-the-actual-provider-model-id",
+    "base_url": "https://provider.example/v1",
+    "api_key_env": "ROUTELAB_PROVIDER_API_KEY",
+    "timeout_seconds": 30,
+    "max_output_tokens": 512,
+    "input_price_per_million": null,
+    "output_price_per_million": null
+  }
+]
