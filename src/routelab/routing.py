@@ -104,7 +104,7 @@ class AdaptiveRouter:
             selected=selected,
             candidates=estimates,
             explanation=(
-                f"{request.strategy}: {selected.model_id} from {len(feasible)} feasible candidates. "
+                f"{request.strategy}: {selected.model_id}; {len(feasible)} feasible models. "
                 "Hard constraints apply to pre-inference estimates; real outcomes are uncertain."
             )
             if selected

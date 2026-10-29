@@ -1,4 +1,4 @@
-﻿param([string]$GitHubCli = 'gh')
+param([string]$GitHubCli = 'gh')
 $ErrorActionPreference = 'Stop'
 $expectedOwner = 'PetuBoi'
 $expectedName = 'adaptive-llm-router'
@@ -27,4 +27,3 @@ $local = git rev-parse HEAD
 $remote = (git ls-remote origin refs/heads/main).Split("`t")[0]
 if ($LASTEXITCODE -ne 0 -or $local -cne $remote) { throw 'Remote commit verification failed' }
 Write-Output "Verified pushed HEAD: $local"
-
