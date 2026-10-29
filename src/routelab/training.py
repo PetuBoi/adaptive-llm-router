@@ -178,16 +178,18 @@ class Predictor:
         self.candidates = [Candidate.model_validate(c) for c in saved["candidates"]]
 
     def predict(self, prompt: str) -> dict[str, dict[str, float]]:
-        x = self.features.transform([prompt])
-        results = {}
+        return self.predict_batch([prompt])[0]
+
+    def predict_batch(self, prompts: list[str]) -> list[dict[str, dict[str, float]]]:
+        x = self.features.transform(prompts)
+        results = [{} for _ in prompts]
         for model_id, models in self.models.items():
-            predictions = {}
-            for target, estimator in models.items():
-                value = float(estimator.predict(x)[0])
-                predictions[target] = (
-                    float(np.clip(value, 0, 1))
+            predictions = {target: estimator.predict(x) for target, estimator in models.items()}
+            for index in range(len(prompts)):
+                results[index][model_id] = {
+                    target: float(np.clip(values[index], 0, 1))
                     if target == "observed_quality"
-                    else (float(np.expm1(np.clip(value, 0, 16))))
-                )
-            results[model_id] = predictions
+                    else float(np.expm1(np.clip(values[index], 0, 16)))
+                    for target, values in predictions.items()
+                }
         return results

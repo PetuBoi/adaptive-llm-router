@@ -89,7 +89,14 @@ class AdaptiveRouter:
                 selected = random.Random(f"{request.seed}:{request.prompt}").choice(feasible)
             elif request.strategy == "rule":
                 if len(request.prompt) > 400 or "```" in request.prompt:
-                    selected = max(feasible, key=lambda e: (e.predicted_quality, e.model_id))
+                    selected = next(
+                        (
+                            e
+                            for e in feasible
+                            if e.model_id == self.predictor.metadata["strongest_model"]
+                        ),
+                        min(feasible, key=lambda e: (e.estimated_cost_usd, e.model_id)),
+                    )
                 else:
                     selected = min(feasible, key=lambda e: (e.estimated_cost_usd, e.model_id))
             else:

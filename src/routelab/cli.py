@@ -83,3 +83,46 @@ def train_model(dataset: str = "demo", max_prompts: int | None = None) -> None:
     except ValueError as exc:
         typer.echo(str(exc), err=True)
         raise typer.Exit(1) from exc
+
+
+@app.command("evaluate")
+def evaluate_model(dataset: str = "demo") -> None:
+    """Compare every strategy on the same complete, original held-out observations."""
+    from routelab.config import Settings
+    from routelab.data import load
+    from routelab.evaluation import evaluate
+    from routelab.routing import AdaptiveRouter
+    from routelab.training import Predictor
+
+    if dataset not in {"demo", "xroutebench"}:
+        raise typer.BadParameter("Supported datasets: demo, xroutebench")
+    try:
+        frame, _, _ = load(Settings().data_dir / dataset)
+        result = evaluate(
+            frame,
+            AdaptiveRouter(Predictor(Path("artifacts") / dataset)),
+            Path("reports") / ("synthetic" if dataset == "demo" else "real"),
+        )
+        typer.echo(
+            {k: result[k] for k in ("dataset", "origin", "complete_test_prompts", "comparison")}
+        )
+    except ValueError as exc:
+        typer.echo(str(exc), err=True)
+        raise typer.Exit(1) from exc
+
+
+@app.command("report")
+def report_model(dataset: str = "demo") -> None:
+    """Regenerate Markdown from saved computed results."""
+    import json
+
+    from routelab.evaluation import report
+
+    if dataset not in {"demo", "xroutebench"}:
+        raise typer.BadParameter("Supported datasets: demo, xroutebench")
+    destination = Path("reports") / ("synthetic" if dataset == "demo" else "real")
+    path = destination / "summary.json"
+    if not path.is_file():
+        raise typer.BadParameter("No report yet; run evaluate for this dataset first")
+    report(json.loads(path.read_text("utf-8")), destination)
+    typer.echo(destination / "benchmark_report.md")

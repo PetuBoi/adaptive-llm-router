@@ -11,3 +11,5 @@ data/external/
 data/runtime/
 artifacts/
 *.log
+reports/**/routing_decisions.csv
+reports/**/predictor_errors.csv
