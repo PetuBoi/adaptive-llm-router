@@ -1,0 +1,118 @@
+{
+  "provenance": {
+    "source": "https://huggingface.co/datasets/ulab-ai/xRouteBench",
+    "revision": "ea4b6e1b29d9a734f55f0a637baf326bad6aa681",
+    "downloaded_at": "2026-10-29T15:33:03.755662+00:00",
+    "sha256": {
+      "train.parquet": "6ae53d6b619396271e345a242bd32c253fc9796a45a75d3c122ad74843f8a7ef",
+      "test.parquet": "cc7f33f03298c734c1f4b3c380d8d9b84dc8723eb0d08f850de033d2645778f4",
+      "candidates.parquet": "ba72146533ae68641e382759c90ff5bc53eb903956d4e748b7f3c0111907541f"
+    },
+    "config": "llmrouter_generic",
+    "candidate_config": "llm_candidates",
+    "license": "No explicit license in the inspected card; source terms apply",
+    "origin": "RECORDED",
+    "latency_conversion": "response_time seconds * 1000",
+    "quality_scale": "Published task score in [0,1]; metric identity preserved",
+    "dataset": "xroutebench",
+    "normalization": [
+      {
+        "split": "train",
+        "exact_duplicate_rows_removed": 1,
+        "conflicting_prompt_ids_quarantined": [
+          "5fd999260a0d6fabcfbc026a",
+          "69e8f0f0952961e3c46eed9c"
+        ],
+        "conflicting_rows_quarantined": 71,
+        "duplicate_policy": "quarantine every outcome of conflicting prompts; never average"
+      },
+      {
+        "split": "test",
+        "exact_duplicate_rows_removed": 0,
+        "conflicting_prompt_ids_quarantined": [],
+        "conflicting_rows_quarantined": 0,
+        "duplicate_policy": "quarantine every outcome of conflicting prompts; never average"
+      }
+    ],
+    "quarantined_train_rows": 198,
+    "split_policy": "Published test unchanged; crossing train families/text quarantined",
+    "validation": {
+      "observations": 147654,
+      "prompts": 8203,
+      "models": 18,
+      "complete_prompts": 8203,
+      "missing_matrix_cells": 0,
+      "missing_values": {
+        "observed_quality": 0,
+        "observed_latency_ms": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "reference_cost_usd": 0
+      },
+      "splits": {
+        "test": 3729,
+        "train": 4474
+      }
+    }
+  },
+  "observations": 147654,
+  "prompts": 8203,
+  "models": 18,
+  "complete_prompts": 8203,
+  "missing_matrix_cells": 0,
+  "missing_values": {
+    "observed_quality": 0,
+    "observed_latency_ms": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "reference_cost_usd": 0
+  },
+  "splits": {
+    "test": 3729,
+    "train": 4474
+  },
+  "quality_metrics_by_task": {
+    "aime_2020_2024": [
+      "GSM8K"
+    ],
+    "arc_challenge": [
+      "em_mc"
+    ],
+    "boolq": [
+      "em_mc"
+    ],
+    "commonsense_qa": [
+      "em_mc"
+    ],
+    "gsm8k": [
+      "GSM8K"
+    ],
+    "hellaswag": [
+      "em_mc"
+    ],
+    "human_eval": [
+      "code_eval"
+    ],
+    "math": [
+      "MATH"
+    ],
+    "mbpp": [
+      "code_eval"
+    ],
+    "mmlu": [
+      "em_mc"
+    ],
+    "mmlu_pro": [
+      "em_mc"
+    ],
+    "openbook_qa": [
+      "em_mc"
+    ],
+    "squad": [
+      "f1_score"
+    ]
+  },
+  "origin": [
+    "RECORDED"
+  ]
+}
