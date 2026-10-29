@@ -5,7 +5,7 @@ import logging
 from pathlib import Path
 from typing import Literal
 
-from pydantic import SecretStr
+from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     api_token: SecretStr = SecretStr("")
     live_enabled: bool = False
     provider_config: Path = Path("config/providers.example.json")
+    unavailable_models: list[str] = Field(default_factory=list)
 
 
 def log_event(event: str, **fields: str | int | float) -> None:
