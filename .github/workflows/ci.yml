@@ -16,3 +16,8 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run pytest -q
+      - run: uv run routelab seed-demo
+      - run: uv run routelab validate-data
+      - run: uv run routelab train --dataset demo
+      - run: uv run routelab evaluate --dataset demo
+      - run: uv run routelab report --dataset demo

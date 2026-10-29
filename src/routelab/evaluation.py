@@ -209,6 +209,19 @@ def evaluate(
         "seed": SEED,
         "source_revision": metadata["provenance"].get("revision"),
         "counts": metadata["counts"],
+        "training_configuration": {
+            key: metadata[key]
+            for key in (
+                "features",
+                "predictors",
+                "alphas",
+                "validation",
+                "sklearn_version",
+                "training_fingerprint",
+                "sampling",
+                "max_prompts_per_split",
+            )
+        },
         "expected_test_prompts": expected,
         "complete_test_prompts": len(comparable),
         "common_success_prompts": len(common),

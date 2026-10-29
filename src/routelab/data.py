@@ -102,7 +102,7 @@ def demo(count: int = 240, seed: int = SEED) -> tuple[pd.DataFrame, list[Candida
 
 def save(root: Path, frame: pd.DataFrame, candidates: list[Candidate], manifest: dict) -> None:
     root.mkdir(parents=True, exist_ok=True)
-    frame.to_json(root / "observations.jsonl", orient="records", lines=True)
+    frame.to_json(root / "observations.jsonl", orient="records", lines=True, double_precision=15)
     (root / "candidates.json").write_text(
         json.dumps([c.model_dump() for c in candidates], indent=2), "utf-8"
     )
@@ -144,8 +144,23 @@ def validate(frame: pd.DataFrame, candidates: list[Candidate]) -> dict:
         raise ValueError("Prompt ID maps to inconsistent text")
     if frame.groupby("prompt_id").quality_metric.nunique().max() > 1:
         raise ValueError("Incompatible quality metrics within a prompt")
+    if frame.groupby("task_type").quality_metric.nunique().max() > 1:
+        raise ValueError("Incompatible quality metrics within a task")
+    if frame.groupby("prompt_id").split.nunique().max() > 1:
+        raise ValueError("Prompt identity crosses original train/test split")
     if frame.groupby("prompt_family_id").split.nunique().max() > 1:
         raise ValueError("Prompt family crosses original train/test split")
+    rates_in = {candidate.model_id: candidate.input_price_per_million for candidate in candidates}
+    rates_out = {candidate.model_id: candidate.output_price_per_million for candidate in candidates}
+    expected = (
+        frame.input_tokens * frame.model_id.map(rates_in)
+        + frame.output_tokens * frame.model_id.map(rates_out)
+    ) / 1_000_000
+    known = expected.notna() & frame.reference_cost_usd.notna()
+    if not np.isclose(
+        expected[known], frame.loc[known, "reference_cost_usd"], rtol=1e-9, atol=1e-12
+    ).all():
+        raise ValueError("Reference costs disagree with observed tokens and candidate rates")
     complete = complete_prompts(frame, candidate_ids)
     return {
         "observations": len(frame),

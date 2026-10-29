@@ -1,0 +1,11 @@
+.git
+.venv
+.env*
+data/external
+data/runtime
+artifacts
+.pytest_cache
+.ruff_cache
+.coverage
+coverage.xml
+__pycache__

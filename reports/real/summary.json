@@ -1,7 +1,7 @@
 {
   "dataset": "xroutebench",
   "origin": "RECORDED",
-  "evaluated_at": "2026-10-29T15:43:10.641897+00:00",
+  "evaluated_at": "2026-10-29T15:52:05.860201+00:00",
   "seed": 42,
   "source_revision": "ea4b6e1b29d9a734f55f0a637baf326bad6aa681",
   "counts": {
@@ -9,6 +9,486 @@
     "validation_prompts": 896,
     "training_refit_prompts": 4474,
     "test_prompts": 3729
+  },
+  "training_configuration": {
+    "features": "word TF-IDF 1-2 grams max6000 + 10 training-standardized log counts",
+    "predictors": "per-model Ridge quality; log1p Ridge input/output tokens and latency",
+    "alphas": {
+      "qwen2.5-7b-instruct": 10.0,
+      "gemma-2-9b-it": 10.0,
+      "llama-3-8b-instruct-lite": 10.0,
+      "qwen2.5-7b-instruct-turbo": 10.0,
+      "mistral-7b-instruct-v0.3": 10.0,
+      "qwen3-next-80b-a3b-instruct": 10.0,
+      "llama3-70b-instruct": 10.0,
+      "mixtral-8x7b-instruct-v0.1": 10.0,
+      "mixtral-8x22b-instruct-v0.1": 10.0,
+      "gpt-oss-20b": 10.0,
+      "mistral-small-3-24b-instruct": 10.0,
+      "llama-4-maverick": 10.0,
+      "rnj-1-instruct": 10.0,
+      "gpt-oss-120b": 10.0,
+      "qwen3-coder-next": 10.0,
+      "deepseek-v3.1": 10.0,
+      "llama-3.3-70b-instruct-turbo": 10.0,
+      "cogito-v2-1-671b": 10.0
+    },
+    "validation": [
+      {
+        "model_id": "qwen2.5-7b-instruct",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.1788819070123113,
+            "mae": 0.3466163469675988
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.17841315270458366,
+            "mae": 0.3641545500053946
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.19016522194187,
+            "mae": 0.3856325973047453
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.17841315270458366,
+          "mae": 0.3641545500053946
+        }
+      },
+      {
+        "model_id": "gemma-2-9b-it",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.16275063724882338,
+            "mae": 0.30530182059829464
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.15388034485252403,
+            "mae": 0.31475072285870115
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.17006282277669246,
+            "mae": 0.3531891406593032
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.15388034485252403,
+          "mae": 0.31475072285870115
+        }
+      },
+      {
+        "model_id": "llama-3-8b-instruct-lite",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.21231481077394307,
+            "mae": 0.38772845687977364
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.2002793374862557,
+            "mae": 0.3992571522587943
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.2089015162720101,
+            "mae": 0.4227929745927707
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.2002793374862557,
+          "mae": 0.3992571522587943
+        }
+      },
+      {
+        "model_id": "qwen2.5-7b-instruct-turbo",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.18004407102545722,
+            "mae": 0.34345936915772324
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.17649128278730755,
+            "mae": 0.3577828299861564
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.1870603142794248,
+            "mae": 0.3780605692681157
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.17649128278730755,
+          "mae": 0.3577828299861564
+        }
+      },
+      {
+        "model_id": "mistral-7b-instruct-v0.3",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.15749517088074244,
+            "mae": 0.3004766891786524
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.15151314313563274,
+            "mae": 0.3156259948344799
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.16368056300366737,
+            "mae": 0.34299936701226713
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.15151314313563274,
+          "mae": 0.3156259948344799
+        }
+      },
+      {
+        "model_id": "qwen3-next-80b-a3b-instruct",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.1286062703345225,
+            "mae": 0.24882144967639033
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.12720134317028925,
+            "mae": 0.26562916091412625
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.14963157813296926,
+            "mae": 0.3143005538964899
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.12720134317028925,
+          "mae": 0.26562916091412625
+        }
+      },
+      {
+        "model_id": "llama3-70b-instruct",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.14048272847742962,
+            "mae": 0.2774676634953597
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.13764881155666103,
+            "mae": 0.2931408818111203
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.15835109871961967,
+            "mae": 0.33824183560087845
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.13764881155666103,
+          "mae": 0.2931408818111203
+        }
+      },
+      {
+        "model_id": "mixtral-8x7b-instruct-v0.1",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.19534071784749063,
+            "mae": 0.34999057953146195
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.18179981277792553,
+            "mae": 0.3549504197293244
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.18479429167795242,
+            "mae": 0.36547129966557035
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.18179981277792553,
+          "mae": 0.3549504197293244
+        }
+      },
+      {
+        "model_id": "mixtral-8x22b-instruct-v0.1",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.1886682256917394,
+            "mae": 0.35967003209091414
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.18292899742214425,
+            "mae": 0.3731397092421114
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.1999695334362321,
+            "mae": 0.40718136187944204
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.18292899742214425,
+          "mae": 0.3731397092421114
+        }
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.16488218456673523,
+            "mae": 0.31644469695976196
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.1611219031505152,
+            "mae": 0.3331890728223373
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.1818761935826499,
+            "mae": 0.37441791555143805
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.1611219031505152,
+          "mae": 0.3331890728223373
+        }
+      },
+      {
+        "model_id": "mistral-small-3-24b-instruct",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.15074759067015311,
+            "mae": 0.29437373852953275
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.15022761304004786,
+            "mae": 0.31633581198104943
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.16951973479755095,
+            "mae": 0.35735286478166545
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.15022761304004786,
+          "mae": 0.31633581198104943
+        }
+      },
+      {
+        "model_id": "llama-4-maverick",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.12126718748391022,
+            "mae": 0.23069778518860037
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.11941264258734845,
+            "mae": 0.24789384507637044
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.14018851604500693,
+            "mae": 0.3054005642904637
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.11941264258734845,
+          "mae": 0.24789384507637044
+        }
+      },
+      {
+        "model_id": "rnj-1-instruct",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.15547098126097625,
+            "mae": 0.3029609297147993
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.15422613957501105,
+            "mae": 0.3168008970777341
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.16786946335351674,
+            "mae": 0.34241665402872457
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.15422613957501105,
+          "mae": 0.3168008970777341
+        }
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.1332491331302807,
+            "mae": 0.2663708203713465
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.1321693001295358,
+            "mae": 0.2826519922190304
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.15639344154702703,
+            "mae": 0.3314722966479605
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.1321693001295358,
+          "mae": 0.2826519922190304
+        }
+      },
+      {
+        "model_id": "qwen3-coder-next",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.16225130408228888,
+            "mae": 0.3041446862019094
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.15812944694218803,
+            "mae": 0.3179057113748418
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.17240182520230077,
+            "mae": 0.3504363456701953
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.15812944694218803,
+          "mae": 0.3179057113748418
+        }
+      },
+      {
+        "model_id": "deepseek-v3.1",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.1683305560982202,
+            "mae": 0.32016093512839167
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.16008213307634,
+            "mae": 0.33738671115142144
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.17873150287961487,
+            "mae": 0.37753178592142655
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.16008213307634,
+          "mae": 0.33738671115142144
+        }
+      },
+      {
+        "model_id": "llama-3.3-70b-instruct-turbo",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.1347050283385978,
+            "mae": 0.2624166785120471
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.12983179693429964,
+            "mae": 0.2770536512928648
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.15249278993638657,
+            "mae": 0.32699098331042714
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.12983179693429964,
+          "mae": 0.2770536512928648
+        }
+      },
+      {
+        "model_id": "cogito-v2-1-671b",
+        "trials": [
+          {
+            "alpha": 1.0,
+            "mse": 0.12157472627393809,
+            "mae": 0.23596787575790162
+          },
+          {
+            "alpha": 10.0,
+            "mse": 0.12087253015002235,
+            "mae": 0.25872240766334914
+          },
+          {
+            "alpha": 100.0,
+            "mse": 0.14846434736846945,
+            "mae": 0.318811356159489
+          }
+        ],
+        "selected": {
+          "alpha": 10.0,
+          "mse": 0.12087253015002235,
+          "mae": 0.25872240766334914
+        }
+      }
+    ],
+    "sklearn_version": "1.9.1",
+    "training_fingerprint": "76da2eb9798e00c793769aa2a76148d6733116baa7f2ddaf77809229a9534089",
+    "sampling": "seeded family hash order per original split; whole families may exceed cap",
+    "max_prompts_per_split": null
   },
   "expected_test_prompts": 3729,
   "complete_test_prompts": 3729,
@@ -30,19 +510,19 @@
     "latency_weight": 0.1,
     "seed": 42
   },
-  "predictor_quality_mae": 0.35364262641011346,
+  "predictor_quality_mae": 0.35364286124914335,
   "comparison": [
     {
       "strategy": "cheapest",
       "test_prompts": 3729,
       "common_success_prompts": 3729,
       "failure_rate": 0.0,
-      "macro_task_quality": 0.5815914287530769,
-      "quality_ci95_low": 0.5650816931860653,
-      "quality_ci95_high": 0.5977563364967117,
+      "macro_task_quality": 0.581591428753116,
+      "quality_ci95_low": 0.5650816931861002,
+      "quality_ci95_high": 0.597756336496825,
       "mean_reference_cost_usd": 1.1937382676320729e-05,
       "mean_observed_latency_ms": 3170.9050683829446,
-      "p50_latency_ms": 2361.0,
+      "p50_latency_ms": 2360.9999999999995,
       "p95_latency_ms": 8364.8,
       "quality_target_attainment": 0.6964333601501743,
       "latency_target_attainment": 0.5894341646554035,
@@ -55,16 +535,16 @@
         "llama-3-8b-instruct-lite": 176
       },
       "reference_cost_reduction_vs_strongest": 0.9739176417509917,
-      "quality_delta_vs_strongest": -0.07196390158138466
+      "quality_delta_vs_strongest": -0.07196390158175658
     },
     {
       "strategy": "strongest",
       "test_prompts": 3729,
       "common_success_prompts": 3729,
       "failure_rate": 0.0,
-      "macro_task_quality": 0.6535553303344616,
-      "quality_ci95_low": 0.6387059984481154,
-      "quality_ci95_high": 0.6670874100370731,
+      "macro_task_quality": 0.6535553303348726,
+      "quality_ci95_low": 0.6387059984485925,
+      "quality_ci95_high": 0.6670874100372649,
       "mean_reference_cost_usd": 0.0004576803432555645,
       "mean_observed_latency_ms": 2521.0632877447038,
       "p50_latency_ms": 2333.0,
@@ -85,12 +565,12 @@
       "test_prompts": 3729,
       "common_success_prompts": 3729,
       "failure_rate": 0.0,
-      "macro_task_quality": 0.5284102686024617,
-      "quality_ci95_low": 0.5045123570220039,
-      "quality_ci95_high": 0.5543058537500922,
+      "macro_task_quality": 0.5284102686026044,
+      "quality_ci95_low": 0.5045123570217358,
+      "quality_ci95_high": 0.5543058537500243,
       "mean_reference_cost_usd": 0.0001816433494234379,
       "mean_observed_latency_ms": 2867.78653794583,
-      "p50_latency_ms": 1684.0,
+      "p50_latency_ms": 1684.0000000000002,
       "p95_latency_ms": 8775.799999999997,
       "quality_target_attainment": 0.6151783319924913,
       "latency_target_attainment": 0.6747117189595065,
@@ -118,16 +598,16 @@
         "deepseek-v3.1": 173
       },
       "reference_cost_reduction_vs_strongest": 0.6031218030222243,
-      "quality_delta_vs_strongest": -0.1251450617319999
+      "quality_delta_vs_strongest": -0.12514506173226814
     },
     {
       "strategy": "rule",
       "test_prompts": 3729,
       "common_success_prompts": 3729,
       "failure_rate": 0.0,
-      "macro_task_quality": 0.6292291565083078,
-      "quality_ci95_low": 0.6153139638853885,
-      "quality_ci95_high": 0.6442329020672463,
+      "macro_task_quality": 0.6292291565086988,
+      "quality_ci95_low": 0.6153139638861289,
+      "quality_ci95_high": 0.6442329020678204,
       "mean_reference_cost_usd": 0.000285819066773934,
       "mean_observed_latency_ms": 2712.826226870475,
       "p50_latency_ms": 2375.0,
@@ -144,19 +624,19 @@
         "llama-3-8b-instruct-lite": 160
       },
       "reference_cost_reduction_vs_strongest": 0.37550504192325496,
-      "quality_delta_vs_strongest": -0.024326173826153763
+      "quality_delta_vs_strongest": -0.024326173826173747
     },
     {
       "strategy": "ml",
       "test_prompts": 3729,
       "common_success_prompts": 3729,
       "failure_rate": 0.0,
-      "macro_task_quality": 0.6849642234133847,
-      "quality_ci95_low": 0.6599170099422578,
-      "quality_ci95_high": 0.7065372890394962,
+      "macro_task_quality": 0.6849642234137691,
+      "quality_ci95_low": 0.6599170099429031,
+      "quality_ci95_high": 0.7065372890400121,
       "mean_reference_cost_usd": 8.599231965674443e-05,
       "mean_observed_latency_ms": 3198.183159023867,
-      "p50_latency_ms": 1950.0,
+      "p50_latency_ms": 1950.0000000000002,
       "p95_latency_ms": 8773.199999999995,
       "quality_target_attainment": 0.7594529364440868,
       "latency_target_attainment": 0.6293912577098418,
@@ -182,16 +662,16 @@
         "mixtral-8x22b-instruct-v0.1": 5
       },
       "reference_cost_reduction_vs_strongest": 0.8121127093965512,
-      "quality_delta_vs_strongest": 0.03140889307892314
+      "quality_delta_vs_strongest": 0.031408893078896494
     },
     {
       "strategy": "oracle",
       "test_prompts": 3729,
       "common_success_prompts": 3729,
       "failure_rate": 0.0,
-      "macro_task_quality": 0.8532747553545561,
-      "quality_ci95_low": 0.8320597918066637,
-      "quality_ci95_high": 0.8754819094422774,
+      "macro_task_quality": 0.8532747553548466,
+      "quality_ci95_low": 0.8320597918069488,
+      "quality_ci95_high": 0.8754819094431585,
       "mean_reference_cost_usd": 3.234866988468758e-05,
       "mean_observed_latency_ms": 2636.6173236792706,
       "p50_latency_ms": 1786.0,
@@ -222,7 +702,7 @@
         "qwen3-coder-next": 3
       },
       "reference_cost_reduction_vs_strongest": 0.9293203862447194,
-      "quality_delta_vs_strongest": 0.19971942502009454
+      "quality_delta_vs_strongest": 0.19971942501997408
     }
   ],
   "limitations": "Reference prices and recorded latency are historical. Metrics differ by task. No significance claim."

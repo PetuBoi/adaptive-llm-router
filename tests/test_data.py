@@ -49,3 +49,23 @@ def test_invalid_duplicate_unknown_and_missing(tmp_path):
         RouteRequest(prompt="hello", strategy="oracle")
     with pytest.raises(ValidationError):
         RouteRequest(prompt="hello", max_cost_usd=float("nan"))
+
+
+def test_metric_cost_and_split_integrity():
+    frame, candidates, _ = demo()
+    wrong = frame.copy()
+    wrong.loc[0, "quality_metric"] = "incompatible"
+    with pytest.raises(ValueError, match="Incompatible"):
+        validate(wrong, candidates)
+    wrong = frame.copy()
+    wrong.loc[0, "reference_cost_usd"] += 0.001
+    with pytest.raises(ValueError, match="costs disagree"):
+        validate(wrong, candidates)
+    wrong = frame.copy()
+    wrong.loc[0, "split"] = "test" if wrong.loc[0, "split"] == "train" else "train"
+    with pytest.raises(ValueError, match="crosses"):
+        validate(wrong, candidates)
+    with pytest.raises(ValidationError):
+        RouteRequest(prompt="   ")
+    with pytest.raises(ValidationError):
+        RouteRequest(prompt="hello", quality_weight=0, cost_weight=0, latency_weight=0)
